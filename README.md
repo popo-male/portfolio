@@ -1,36 +1,132 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# My Portfolio
 
-## Getting Started
+A modern, animated personal portfolio built with Next.js App Router, React, and TypeScript.
 
-First, run the development server:
+The site presents professional experience, education, skills, projects, certifications, and contact information from a single structured data source.
+
+## Overview
+
+### Responsibilities
+
+- Render a one-page portfolio with section-based navigation.
+- Support light and dark theme switching.
+- Animate key UI areas for smoother visual storytelling.
+- Keep profile content centralized in one typed data module.
+
+### Integration
+
+- Content source: local TypeScript object in `src/data/portfolio.ts`.
+- UI sections: reusable components under `src/components/sections`.
+- Theme engine: `next-themes` via provider in `src/components/ThemeProvider.tsx`.
+- Icons: `lucide-react` plus Devicon stylesheet loaded in `src/app/layout.tsx`.
+
+## Resources
+
+- Next.js docs: https://nextjs.org/docs
+- Tailwind CSS docs: https://tailwindcss.com/docs
+- Framer Motion docs: https://www.framer.com/motion/
+- Devicon catalog: https://devicon.dev/
+
+## Architecture
+
+### Tech Stack
+
+- Next.js 16 (App Router)
+- React 19
+- TypeScript 5
+- Tailwind CSS 4
+- Framer Motion
+- next-themes
+
+### Project Structure
+
+```text
+src/
+	app/
+		layout.tsx        # Root layout + global providers + external icon stylesheet
+		page.tsx          # Home page composition (section order)
+		globals.css       # Theme variables and global styles
+	components/
+		Navbar.tsx
+		ThemeProvider.tsx
+		sections/
+			hero.tsx
+			experience.tsx
+			education.tsx
+			skill.tsx
+			project.tsx
+			certification.tsx
+			contact.tsx
+			footer.tsx
+	data/
+		portfolio.ts      # Main editable content source
+	types/
+		index.ts          # Shared data interfaces
+```
+
+## Local Development
+
+### Prerequisites
+
+- Node.js 20+
+- npm 10+ (or equivalent package manager)
+
+### 1. Install dependencies
+
+```bash
+npm install
+```
+
+### 2. Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000 in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Available Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `npm run dev`: Start local development server.
+- `npm run build`: Create production build.
+- `npm run start`: Run the production server.
+- `npm run lint`: Run ESLint checks.
 
-## Learn More
+## Content Customization
 
-To learn more about Next.js, take a look at the following resources:
+Most content updates can be done without touching component logic.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Profile data: edit `src/data/portfolio.ts`
+- Data shape contracts: edit `src/types/index.ts`
+- Section order on homepage: edit `src/app/page.tsx`
+- Global styles and theme tokens: edit `src/app/globals.css`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Theming
 
-## Deploy on Vercel
+Theme switching uses `next-themes` and a custom `data-theme` attribute.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Light and dark CSS variables are defined in `src/app/globals.css`.
+- Theme toggle UI is implemented in `src/components/Navbar.tsx`.
+- Provider setup is in `src/components/ThemeProvider.tsx` and wired from `src/app/layout.tsx`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Build and Production Run
+
+```bash
+npm run build
+npm run start
+```
+
+## Deployment
+
+You can deploy this app on any Next.js-compatible platform.
+
+- Vercel (recommended for fastest setup)
+- Netlify
+- Self-hosted Node.js environment
+
+For Vercel deployment details, see: https://nextjs.org/docs/app/building-your-application/deploying
+
+## Notes
+
+- No automated test suite is currently configured in this repository.
+- The `public/icons` folder is currently empty; icon rendering relies on `lucide-react` and Devicon CDN.
